@@ -1,5 +1,10 @@
 const solution = (number) => {
   numeral = [];
+  if (number >= 100) {
+    divisions = parseInt(number / 100);
+    numeral.push(get100numeral(number, divisions));
+    number -= divisions * 100;
+  }
   if (number >= 10) {
     divisions = parseInt(number / 10);
     numeral.push(get10numeral(number, divisions));
@@ -8,6 +13,12 @@ const solution = (number) => {
   let smallNums = numeralRange("I", "V", "X");
   numeral.push(smallNums[number]);
   return numeral.join("");
+};
+
+const get100numeral = (number, divisions) => {
+  divis10 = parseInt(number / 100);
+  divis10range = numeralRange("C", "D", "M");
+  return divis10range[divisions];
 };
 
 const get10numeral = (number, divisions) => {

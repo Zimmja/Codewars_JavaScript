@@ -92,3 +92,7 @@ test("It returns the symbols below 100", () => {
   checkSymbol(81, "LXXXI");
   checkSymbol(98, "XCVIII");
 });
+
+test("It returns the symbol for numbers under 1000", () => {
+  checkSymbol(476, "CDLXXVI");
+});
