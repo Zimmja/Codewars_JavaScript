@@ -8,19 +8,10 @@ class Numeral {
   getValue = () => this.numerals.join("");
 
   buildNumeral = () => {
-    this.calculateMilNumeral();
+    this.calculateNumeral(1000, ["M", "MMM", ""]);
     this.calculateNumeral(100, ["C", "D", "M"]);
     this.calculateNumeral(10, ["X", "L", "C"]);
     this.calculateNumeral(1, ["I", "V", "X"]);
-  };
-
-  calculateMilNumeral = () => {
-    if (this.number >= 1000) {
-      let divisions = parseInt(this.number / 1000);
-      let myArr = Array(divisions).fill("M");
-      this.numerals.push(myArr.join(""));
-      this.number -= divisions * 1000;
-    }
   };
 
   calculateNumeral = (divisor, elements) => {
@@ -53,8 +44,7 @@ class Numeral {
 }
 
 const solution = (number) => {
-  let numeralObj = new Numeral(number);
-  return numeralObj.getValue();
+  return new Numeral(number).getValue();
 };
 
 module.exports = solution;
