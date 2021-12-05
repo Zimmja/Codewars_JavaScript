@@ -95,4 +95,12 @@ test("It returns the symbols below 100", () => {
 
 test("It returns the symbol for numbers under 1000", () => {
   checkSymbol(476, "CDLXXVI");
+  checkSymbol(888, "DCCCLXXXVIII");
+});
+
+test("It returns the symbol for 1000s", () => {
+  checkSymbol(1000, "M");
+  checkSymbol(2000, "MM");
+  checkSymbol(3000, "MMM");
+  checkSymbol(4000, "MMMM");
 });
