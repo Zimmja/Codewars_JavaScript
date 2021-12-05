@@ -4,7 +4,7 @@ const checkSymbol = (num, sym) => {
   expect(solution(num)).toBe(sym);
 };
 
-const numerals1_to_10 = [
+const numerals10 = [
   "I",
   "II",
   "III",
@@ -16,7 +16,7 @@ const numerals1_to_10 = [
   "IX",
   "X",
 ];
-const numerals10_to_19 = [
+const numerals19 = numerals10.concat([
   "XI",
   "XII",
   "XIII",
@@ -26,7 +26,29 @@ const numerals10_to_19 = [
   "XVII",
   "XVIII",
   "XIX",
-];
+]);
+const numerals39 = numerals19.concat([
+  "XX",
+  "XXI",
+  "XXII",
+  "XXIII",
+  "XXIV",
+  "XXV",
+  "XXVI",
+  "XXVII",
+  "XXVIII",
+  "XXIX",
+  "XXX",
+  "XXXI",
+  "XXXII",
+  "XXXIII",
+  "XXXIV",
+  "XXXV",
+  "XXXVI",
+  "XXXVII",
+  "XXXVIII",
+  "XXXIX",
+]);
 
 const numberRange = (max) => {
   accum = [];
@@ -42,12 +64,22 @@ test("It returns the symbol for 1", () => {
 
 test("It returns symbols up to 10", () => {
   let nums = numberRange(10);
-  let syms = numerals1_to_10;
+  let syms = numerals10;
   nums.forEach((x, i) => checkSymbol(x, syms[i]));
 });
 
 test("It returns symbols up to 19", () => {
   let nums = numberRange(19);
-  let syms = numerals1_to_10.concat(numerals10_to_19);
+  let syms = numerals19;
   nums.forEach((x, i) => checkSymbol(x, syms[i]));
 });
+
+test("It returns the symbol for 20", () => {
+  checkSymbol(20, "XX");
+});
+
+// test("It returns symbols up to 39", () => {
+//   let nums = numberRange(39);
+//   let syms = numerals1_to_10.concat(numerals10_to_19);
+//   nums.forEach((x, i) => checkSymbol(x, syms[i]));
+// });
