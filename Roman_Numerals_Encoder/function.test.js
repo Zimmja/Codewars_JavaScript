@@ -78,8 +78,17 @@ test("It returns the symbol for 20", () => {
   checkSymbol(20, "XX");
 });
 
-// test("It returns symbols up to 39", () => {
-//   let nums = numberRange(39);
-//   let syms = numerals1_to_10.concat(numerals10_to_19);
-//   nums.forEach((x, i) => checkSymbol(x, syms[i]));
-// });
+test("It returns symbols up to 39", () => {
+  let nums = numberRange(39);
+  let syms = numerals39;
+  nums.forEach((x, i) => checkSymbol(x, syms[i]));
+});
+
+test("It returns the symbols below 100", () => {
+  checkSymbol(47, "XLVII");
+  checkSymbol(55, "LV");
+  checkSymbol(63, "LXIII");
+  checkSymbol(72, "LXXII");
+  checkSymbol(81, "LXXXI");
+  checkSymbol(98, "XCVIII");
+});
