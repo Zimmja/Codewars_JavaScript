@@ -1,14 +1,18 @@
 function alphabetPosition(text) {
   let letters = text.split("");
-  let numbers = letters.map((letter) => {
-    return getLetterPosition(letter.toLowerCase());
-  });
+  let numbers = convertLettersToNumbers(letters);
   return filterAndJoin(numbers);
 }
 
 function filterAndJoin(numbers) {
   let filtered = numbers.filter((number) => number != "");
   return filtered.join(" ");
+}
+
+function convertLettersToNumbers(letters) {
+  return letters.map((letter) => {
+    return getLetterPosition(letter.toLowerCase());
+  });
 }
 
 function getLetterPosition(letter) {
@@ -18,5 +22,3 @@ function getLetterPosition(letter) {
 }
 
 module.exports = alphabetPosition;
-
-alphabetPosition("the");
