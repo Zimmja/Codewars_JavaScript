@@ -1,6 +1,9 @@
 function alphabetPosition(text) {
-  let alphPos = { a: 1, b: 2 };
-  return `${alphPos[text]}`;
+  let alphPos = "abcdefghijklmnopqrstuvwxyz".split("");
+  console.log(alphPos);
+  return `${alphPos.indexOf(text) + 1}`;
 }
 
 module.exports = alphabetPosition;
+
+alphabetPosition("z");
