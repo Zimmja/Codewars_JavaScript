@@ -1,5 +1,5 @@
 function alphabetPosition(text) {
-  let letters = text.split(" ");
+  let letters = text.split("");
   let numbers = letters.map((letter) => {
     return getLetterPosition(letter.toLowerCase());
   });
@@ -19,4 +19,4 @@ function getLetterPosition(letter) {
 
 module.exports = alphabetPosition;
 
-alphabetPosition("A");
+alphabetPosition("the");
