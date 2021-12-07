@@ -1,7 +1,7 @@
 function alphabetPosition(text) {
   let letters = text.split(" ");
   let numbers = letters.map((letter) => {
-    return getLetterPosition(letter);
+    return getLetterPosition(letter.toLowerCase());
   });
   return filterAndJoin(numbers);
 }
@@ -19,6 +19,4 @@ function getLetterPosition(letter) {
 
 module.exports = alphabetPosition;
 
-alphabetPosition("z");
-alphabetPosition("a");
-alphabetPosition("a b c ?");
+alphabetPosition("A");
