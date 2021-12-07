@@ -1,5 +1,5 @@
 const alphabetPosition = require("./function");
 
-test("test", () => {
-  expect(alphabetPosition("test")).toBe("test");
+test("Returns 1 if text === 'a", () => {
+  expect(alphabetPosition("a")).toBe("1");
 });

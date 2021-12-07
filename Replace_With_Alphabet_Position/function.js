@@ -1,5 +1,6 @@
 function alphabetPosition(text) {
-  return text;
+  let alphPos = { a: 1 };
+  return `${alphPos[text]}`;
 }
 
 module.exports = alphabetPosition;
