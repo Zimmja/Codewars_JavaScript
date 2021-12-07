@@ -7,3 +7,7 @@ test("Doesn't flip smaller words", () => {
 test("Flips longer words", () => {
   expect(spinWords("longer")).toBe("regnol");
 });
+
+test("Works with multiple words", () => {
+  expect(spinWords("test test")).toBe("test test");
+});
