@@ -3,6 +3,10 @@ function alphabetPosition(text) {
   let numbers = letters.map((letter) => {
     return getLetterPosition(letter);
   });
+  return filterAndJoin(numbers);
+}
+
+function filterAndJoin(numbers) {
   let filtered = numbers.filter((number) => number != "");
   return filtered.join(" ");
 }
