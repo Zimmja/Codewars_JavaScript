@@ -11,3 +11,7 @@ test("Returns 2 if text === 'b'", () => {
 test("Returns 26 if text === 'z'", () => {
   expect(alphabetPosition("z")).toBe("26");
 });
+
+test("Returns '1 2' if text === 'a b'", () => {
+  expect(alphabetPosition("a b")).toBe("1 2");
+});
