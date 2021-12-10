@@ -1,15 +1,20 @@
 function humanReadable(seconds) {
-  return [
-    `${formatTime(convertTime(seconds, 3600))}`,
-    `${formatTime(convertTime(seconds, 60))}`,
-    `${formatTime(convertTime(seconds, 1))}`,
-  ].join(":");
+  let timeBlocks = [3600, 60, 1];
+  return timeBlocks.map((block) => findReadable(seconds, block)).join(":");
+}
+
+function findReadable(s, b) {
+  return `${formatTime(convertTime(s, b))}`;
 }
 
 function convertTime(time, divideBy) {
-  if (divideBy < 3600) time -= 3600 * parseInt(time / 3600);
-  if (divideBy < 60) time -= 60 * parseInt(time / 60);
+  if (divideBy < 3600) time -= subtractionValue(time, 3600);
+  if (divideBy < 60) time -= subtractionValue(time, 60);
   return parseInt(time / divideBy);
+}
+
+function subtractionValue(time, sub) {
+  return sub * parseInt(time / sub);
 }
 
 function formatTime(time) {
@@ -17,7 +22,3 @@ function formatTime(time) {
 }
 
 module.exports = humanReadable;
-
-// console.log(seconds(3600, 1));
-// console.log(seconds(3600, 60));
-// console.log(seconds(3600, 3600));
