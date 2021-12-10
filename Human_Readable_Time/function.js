@@ -15,7 +15,7 @@ function formatBlock(time) {
 function blockCount(time, block) {
   if (block < 3600) time -= subtractionValue(time, 3600);
   if (block < 60) time -= subtractionValue(time, 60);
-  return parseInt(time / divideBy);
+  return parseInt(time / block);
 }
 
 function subtractionValue(time, sub) {
