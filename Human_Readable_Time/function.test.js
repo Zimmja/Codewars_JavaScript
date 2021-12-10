@@ -1,5 +1,5 @@
 const humanReadable = require("./function");
 
-test("it returns true", () => {
-  expect(humanReadable(0)).toEqual(true);
+test("Returns 00:00:00 for 0", () => {
+  expect(humanReadable(0)).toEqual("00:00:00");
 });
