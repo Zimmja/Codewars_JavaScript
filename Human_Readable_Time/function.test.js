@@ -27,3 +27,7 @@ test("Returns 00:59:59 for 3599", () => {
 test("Returns 01:00:00 for 3600", () => {
   expect(humanReadable(3600)).toEqual("01:00:00");
 });
+
+test("Returns 99:59:59 for 359999", () => {
+  expect(humanReadable(359999)).toEqual("99:59:59");
+});

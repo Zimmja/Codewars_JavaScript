@@ -1,12 +1,14 @@
 function humanReadable(seconds) {
-  let hh = parseInt(seconds / 3600);
-  seconds -= hh * 3600;
-  let mm = parseInt(seconds / 60);
-  seconds -= mm * 60;
-  return `${formatTime(hh)}:${formatTime(mm)}:${formatTime(seconds)}`;
+  let times = [];
+  for (let i = 3600; i >= 1; i /= 60) {
+    let time = parseInt(seconds / i);
+    times.push(time);
+    seconds -= time * i;
+  }
+  return `${formTime(times[0])}:${formTime(times[1])}:${formTime(times[2])}`;
 }
 
-function formatTime(time) {
+function formTime(time) {
   return `${time < 10 ? "0" : ""}${time}`;
 }
 
