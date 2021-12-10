@@ -11,3 +11,7 @@ test("Returns 00:00:01 for 1", () => {
 test("Returns 00:00:10 for 10", () => {
   expect(humanReadable(10)).toEqual("00:00:10");
 });
+
+test("Returns 00:01:00 for 60", () => {
+  expect(humanReadable(60)).toEqual("00:01:00");
+});

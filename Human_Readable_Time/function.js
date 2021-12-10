@@ -1,5 +1,7 @@
 function humanReadable(seconds) {
-  return `00:00:${formatTime(seconds)}`;
+  let mm = parseInt(seconds / 60);
+  seconds -= mm * 60;
+  return `00:${formatTime(mm)}:${formatTime(seconds)}`;
 }
 
 function formatTime(time) {
