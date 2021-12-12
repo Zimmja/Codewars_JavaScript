@@ -5,7 +5,12 @@ function isValidIP(str) {
 }
 
 function validMap(parts) {
-  return parts.map((part) => part <= 255 && part >= 0);
+  return parts.map((part) => validate(part));
+}
+
+function validate(part) {
+  if (part.length != parseInt(part).toString().length) return false;
+  return part <= 255 && part >= 0;
 }
 
 module.exports = isValidIP;
