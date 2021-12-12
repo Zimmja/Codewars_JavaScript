@@ -1,5 +1,5 @@
 function dirReduc(arr) {
-  return true;
+  return arr;
 }
 
 module.exports = dirReduc;
