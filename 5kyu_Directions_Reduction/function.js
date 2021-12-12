@@ -1,20 +1,17 @@
 function dirReduc(arr) {
   if (arr.length === 1) return arr;
-  if (arr[0] === "SOUTH" && arr[1] === "NORTH") {
-    arr[0] = "";
-    arr[1] = "";
-  } else if (arr[0] === "NORTH" && arr[1] === "SOUTH") {
-    arr[0] = "";
-    arr[1] = "";
-  } else if (arr[0] === "EAST" && arr[1] === "WEST") {
-    arr[0] = "";
-    arr[1] = "";
-  } else if (arr[0] === "WEST" && arr[1] === "EAST") {
+  if (shouldCancel([arr[0], arr[1]])) {
     arr[0] = "";
     arr[1] = "";
   }
   filteredArr = arr.filter((x) => x != "");
   return filteredArr;
+}
+
+function shouldCancel(values) {
+  if (values.includes("NORTH") && values.includes("SOUTH")) return true;
+  if (values.includes("EAST") && values.includes("WEST")) return true;
+  return false;
 }
 
 // function dirReduc(arr) {
