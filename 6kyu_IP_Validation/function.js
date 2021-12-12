@@ -1,12 +1,11 @@
 function isValidIP(str) {
   let parts = str.split(".");
   if (parts.length != 4) return false;
-  let validatedParts = validMap(parts);
-  return validatedParts.includes(false) ? false : true;
+  return !validMap(parts).includes(false);
 }
 
 function validMap(parts) {
-  return parts.map((part) => (part <= 255 ? true : false));
+  return parts.map((part) => part <= 255 && part >= 0);
 }
 
 module.exports = isValidIP;

@@ -15,3 +15,7 @@ test("Returns false if too many numbers are given", () => {
 test("Returns false when one or more parts are > 255", () => {
   expect(isValidIP("0.0.0.256")).toBe(false);
 });
+
+test("Returns false when one or more parts < 0", () => {
+  expect(isValidIP("0.0.0.-1")).toBe(false);
+});
