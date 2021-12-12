@@ -20,6 +20,14 @@ test("Return an empty array if input array contains two cancelling elements", ()
   expect(dirReduc(["WEST", "EAST"])).toEqual([]);
 });
 
+test("Returns left-over values after cancellations", () => {
+  expect(dirReduc(["EAST", "NORTH", "SOUTH"])).toEqual(["EAST"]);
+  expect(dirReduc(["NORTH", "SOUTH", "EAST"])).toEqual(["EAST"]);
+  expect(dirReduc(["NORTH", "SOUTH", "NORTH", "EAST", "EAST", "WEST"])).toEqual(
+    ["NORTH", "EAST"]
+  );
+});
+
 // test("Cancels out the correct values and leaves the rest", () => {
 //   expect(
 //     dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])

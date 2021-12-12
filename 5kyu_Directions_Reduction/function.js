@@ -1,11 +1,16 @@
 function dirReduc(arr) {
   if (arr.length === 1) return arr;
-  if (shouldCancel([arr[0], arr[1]])) {
-    arr[0] = "";
-    arr[1] = "";
+  return resolveDir(arr);
+}
+
+function resolveDir(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (shouldCancel([arr[i], arr[i + 1]])) {
+      arr[i] = "";
+      arr[i + 1] = "";
+    }
   }
-  filteredArr = arr.filter((x) => x != "");
-  return filteredArr;
+  return arr.filter((x) => x != "");
 }
 
 function shouldCancel(values) {
