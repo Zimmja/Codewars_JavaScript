@@ -13,8 +13,11 @@ test("Return the inpurt array if it contains no cancelling elements", () => {
   expect(dirReduc(["SOUTH", "WEST"])).toEqual(["SOUTH", "WEST"]);
 });
 
-test("Return an empty array if input array contains only cancelling elements", () => {
+test("Return an empty array if input array contains two cancelling elements", () => {
   expect(dirReduc(["SOUTH", "NORTH"])).toEqual([]);
+  expect(dirReduc(["NORTH", "SOUTH"])).toEqual([]);
+  expect(dirReduc(["EAST", "WEST"])).toEqual([]);
+  expect(dirReduc(["WEST", "EAST"])).toEqual([]);
 });
 
 // test("Cancels out the correct values and leaves the rest", () => {
