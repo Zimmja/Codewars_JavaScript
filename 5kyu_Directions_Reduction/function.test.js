@@ -34,11 +34,11 @@ test("Cancels out the correct values and leaves the rest", () => {
   ).toEqual(["WEST"]);
 });
 
-// test("Only works if reducable", () => {
-//   expect(dirReduc(["NORTH", "WEST", "SOUTH", "EAST"])).toEqual([
-//     "NORTH",
-//     "WEST",
-//     "SOUTH",
-//     "EAST",
-//   ]);
-// });
+test("Only works if reducable", () => {
+  expect(dirReduc(["NORTH", "WEST", "SOUTH", "EAST"])).toEqual([
+    "NORTH",
+    "WEST",
+    "SOUTH",
+    "EAST",
+  ]);
+});

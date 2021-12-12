@@ -1,14 +1,14 @@
 function dirReduc(arr) {
-  let resolved = false;
-  while (resolved === false) {
+  let done = false;
+  while (done === false) {
     startLength = arr.length;
-    arr = resolveDir(arr);
-    resolved = startLength === arr.length;
+    arr = resolveDirs(arr);
+    done = startLength === arr.length;
   }
-  return resolveDir(arr);
+  return arr;
 }
 
-function resolveDir(arr) {
+function resolveDirs(arr) {
   for (let i = 0; i < arr.length; i++) {
     if (shouldCancel([arr[i], arr[i + 1]])) {
       arr[i] = "";
@@ -25,6 +25,3 @@ function shouldCancel(values) {
 }
 
 module.exports = dirReduc;
-
-// dirReduc(["NORTH", "SOUTH", "EAST"]);
-// dirReduc(["NORTH", "SOUTH", "NORTH", "EAST", "EAST", "WEST"]);
