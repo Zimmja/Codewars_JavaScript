@@ -28,11 +28,11 @@ test("Returns left-over values after cancellations", () => {
   );
 });
 
-// test("Cancels out the correct values and leaves the rest", () => {
-//   expect(
-//     dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])
-//   ).toEqual(["WEST"]);
-// });
+test("Cancels out the correct values and leaves the rest", () => {
+  expect(
+    dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])
+  ).toEqual(["WEST"]);
+});
 
 // test("Only works if reducable", () => {
 //   expect(dirReduc(["NORTH", "WEST", "SOUTH", "EAST"])).toEqual([
