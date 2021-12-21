@@ -26,5 +26,3 @@ function sumSquares(arr) {
 }
 
 module.exports = listSquared;
-
-console.log(listSquared(1, 50));
