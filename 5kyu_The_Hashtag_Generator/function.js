@@ -1,5 +1,5 @@
 function generateHashtag(str) {
-  return false;
+  return `#${str}`;
 }
 
 module.exports = generateHashtag;

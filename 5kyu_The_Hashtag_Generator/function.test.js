@@ -1,5 +1,5 @@
 const generateHashtag = require("./function");
 
-test("Returns false", () => {
-  expect(generateHashtag("Hello World!")).toEqual(false);
+test("Returns #Hello for Hello", () => {
+  expect(generateHashtag("Hello")).toEqual("#Hello");
 });
