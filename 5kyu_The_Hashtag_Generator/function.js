@@ -1,4 +1,5 @@
 function generateHashtag(str) {
+  if (str === "") return false;
   let words = str.split(" ");
   let hashWords = words.map((word) => {
     return capitalize(word);

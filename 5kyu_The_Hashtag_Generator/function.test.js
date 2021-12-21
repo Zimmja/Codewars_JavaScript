@@ -26,3 +26,7 @@ test("Returns false when the result is over 140 characters", () => {
   let longWord = Array(150).fill("A").join("");
   expect(generateHashtag(longWord)).toEqual(false);
 });
+
+test("Returns false when the string is empty", () => {
+  expect(generateHashtag("")).toEqual(false);
+});
