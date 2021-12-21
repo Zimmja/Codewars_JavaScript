@@ -1,5 +1,9 @@
 function generateHashtag(str) {
-  return `#${capitalize(str)}`;
+  let words = str.split(" ");
+  let hashWords = words.map((word) => {
+    return capitalize(word);
+  });
+  return `#${hashWords.join("")}`;
 }
 
 function capitalize(str) {
