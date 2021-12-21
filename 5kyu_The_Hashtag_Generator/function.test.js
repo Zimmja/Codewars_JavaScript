@@ -30,3 +30,7 @@ test("Returns false when the result is over 140 characters", () => {
 test("Returns false when the string is empty", () => {
   expect(generateHashtag("")).toEqual(false);
 });
+
+test("Returns false when the string only includes spaces", () => {
+  expect(generateHashtag(" ")).toEqual(false);
+});

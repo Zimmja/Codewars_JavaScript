@@ -1,7 +1,13 @@
 function generateHashtag(str) {
-  if (str === "") return false;
+  if (isEmpty(str)) return false;
   let hash = getHash(str.split(" "));
   return hash.length > 140 ? false : hash;
+}
+
+function isEmpty(str) {
+  if (str === "") return true;
+  if (str.split(" ").length - 1 === str.length) return true;
+  return false;
 }
 
 function getHash(words) {
@@ -14,5 +20,3 @@ function capitalize(str) {
 }
 
 module.exports = generateHashtag;
-
-generateHashtag("hello");
