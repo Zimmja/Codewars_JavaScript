@@ -1,5 +1,17 @@
 function rgb(r, g, b) {
+  r = verifyRGB(r);
+  g = verifyRGB(g);
+  b = verifyRGB(b);
   return `${hexify(r)}${hexify(g)}${hexify(b)}`;
+}
+
+function verifyRGB(val) {
+  if (val < 0) {
+    val = 0;
+  } else if (val > 255) {
+    val = 255;
+  }
+  return val;
 }
 
 function hexify(dec) {
