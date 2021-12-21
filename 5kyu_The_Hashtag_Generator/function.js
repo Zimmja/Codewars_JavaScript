@@ -1,12 +1,12 @@
 function generateHashtag(str) {
   if (str === "") return false;
   let hash = getHash(str.split(" "));
-  return hash.length > 140 ? false : `#${hash}`;
+  return hash.length > 140 ? false : hash;
 }
 
 function getHash(words) {
   let hashWords = words.map((word) => capitalize(word));
-  return hashWords.join("");
+  return `#${hashWords.join("")}`;
 }
 
 function capitalize(str) {
