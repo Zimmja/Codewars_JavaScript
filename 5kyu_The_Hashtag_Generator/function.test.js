@@ -21,3 +21,8 @@ test("Returns #HelloWorldIsRunning for hello world is running", () => {
 test("Returns #HelloWorld for hello    world", () => {
   expect(generateHashtag("hello    world")).toEqual("#HelloWorld");
 });
+
+test("Returns false when the result is over 140 characters", () => {
+  let longWord = Array(150).fill("A").join("");
+  expect(generateHashtag(longWord)).toEqual(false);
+});

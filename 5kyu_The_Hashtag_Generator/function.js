@@ -3,7 +3,8 @@ function generateHashtag(str) {
   let hashWords = words.map((word) => {
     return capitalize(word);
   });
-  return `#${hashWords.join("")}`;
+  let hash = hashWords.join("");
+  return hash.length > 140 ? false : `#${hashWords.join("")}`;
 }
 
 function capitalize(str) {
