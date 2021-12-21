@@ -1,11 +1,14 @@
 function generateHashtag(str) {
   if (str === "") return false;
-  let words = str.split(" ");
-  let hashWords = words.map((word) => {
-    return capitalize(word);
-  });
+  let hashWords = getHashWords(str.split(" "));
   let hash = hashWords.join("");
   return hash.length > 140 ? false : `#${hashWords.join("")}`;
+}
+
+function getHashWords(words) {
+  return words.map((word) => {
+    return capitalize(word);
+  });
 }
 
 function capitalize(str) {
