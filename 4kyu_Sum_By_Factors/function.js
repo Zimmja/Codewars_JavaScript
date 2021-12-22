@@ -1,5 +1,16 @@
 function sumOfDivided(lst) {
+  let allPrimeFactors = getAllPMs(lst);
   return lst.map((num) => withFactors(num)).flat();
+}
+
+function getAllPMs(lst) {
+  let primeFactors = [];
+  lst.forEach((num) => primeFactors.push(getPrimeFactors(num)));
+  return uniques(primeFactors.flat());
+}
+
+function uniques(arr) {
+  return arr.filter((val, ind) => arr.indexOf(val) === ind);
 }
 
 function withFactors(num) {
@@ -35,4 +46,4 @@ function halfInt(val) {
 
 module.exports = sumOfDivided;
 
-console.log(sumOfDivided([12]));
+console.log(getAllPMs([12, 15]));
