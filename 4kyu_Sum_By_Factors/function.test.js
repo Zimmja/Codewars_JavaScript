@@ -29,3 +29,30 @@ test("Two identical values with two prime factors: 2 and 3", () => {
     [3, 24],
   ]);
 });
+
+test("Two different values", () => {
+  expect(sumOfDivided([12, 15])).toEqual([
+    [2, 12],
+    [3, 27],
+    [5, 15],
+  ]);
+});
+
+test("Three different values", () => {
+  expect(sumOfDivided([12, 15, 21])).toEqual([
+    [2, 12],
+    [3, 48],
+    [5, 15],
+    [7, 21],
+  ]);
+});
+
+test("Five different values", () => {
+  expect(sumOfDivided([12, 15, 21, 35, 87])).toEqual([
+    [2, 12],
+    [3, 135],
+    [5, 50],
+    [7, 56],
+    [29, 87],
+  ]);
+});
