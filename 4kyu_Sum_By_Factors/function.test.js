@@ -57,10 +57,22 @@ test("Five different values", () => {
   ]);
 });
 
-test("Works for 2", () => {
+test("Works for prime numbers", () => {
   expect(sumOfDivided([2])).toEqual([[2, 2]]);
+  expect(sumOfDivided([2, 3])).toEqual([
+    [2, 2],
+    [3, 3],
+  ]);
 });
 
 test("Works for 1", () => {
   expect(sumOfDivided([1])).toEqual([]);
+});
+
+test("Works for negative numbers", () => {
+  expect(sumOfDivided([15, 30, -45])).toEqual([
+    [2, 30],
+    [3, 0],
+    [5, 0],
+  ]);
 });
