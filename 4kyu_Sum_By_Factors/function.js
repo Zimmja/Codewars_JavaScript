@@ -1,23 +1,33 @@
 function sumOfDivided(lst) {
-  return [[getPrimeFactors(lst[0])[0], lst[0]]];
+  return [[getFactors(lst[0])[0], lst[0]]];
 }
 
 function getPrimeFactors(val) {
-  let factors = [];
-  let max = val;
-  let divisor = 2;
+  let factors = getFactors(val);
+  return factors.filter((number) => isPrime(number));
+}
 
-  while (divisor >= 2 && divisor <= max / 2) {
-    if (val % divisor === 0) {
-      factors.push(divisor);
-      val /= divisor;
-    }
-    divisor++;
+function getFactors(val) {
+  let factors = [],
+    max = halfInt(val);
+  for (let i = 2; i <= max; i++) {
+    if (val % i === 0) factors.push(i);
   }
-
   return factors;
+}
+
+function isPrime(val) {
+  let max = halfInt(val);
+  for (let i = 2; i <= max; i++) {
+    if (val % i === 0) return false;
+  }
+  return true;
+}
+
+function halfInt(val) {
+  return parseInt(val / 2);
 }
 
 module.exports = sumOfDivided;
 
-console.log(sumOfDivided([6]));
+console.log(getPrimeFactors(50001));
