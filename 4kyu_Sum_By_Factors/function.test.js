@@ -56,3 +56,7 @@ test("Five different values", () => {
     [29, 87],
   ]);
 });
+
+test("Works for 2", () => {
+  expect(sumOfDivided([2])).toEqual([[2, 2]]);
+});

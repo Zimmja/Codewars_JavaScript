@@ -20,7 +20,7 @@ function getFactors(val) {
   for (let i = 2; i <= max; i++) {
     if (val % i === 0) factors.push(i);
   }
-  return factors;
+  return factors.concat(val);
 }
 
 function factorAndSum(factor, lst) {
@@ -53,4 +53,4 @@ function halfInt(val) {
 
 module.exports = sumOfDivided;
 
-console.log(sumOfDivided([12, 15]));
+console.log(sumOfDivided([2]));
