@@ -59,14 +59,18 @@ test("Five different values", () => {
 
 test("Works for prime numbers", () => {
   expect(sumOfDivided([2])).toEqual([[2, 2]]);
-  expect(sumOfDivided([2, 3])).toEqual([
-    [2, 2],
-    [3, 3],
-  ]);
+});
+
+test("Works for negative prime numbers", () => {
+  expect(sumOfDivided([-23])).toEqual([[23, -23]]);
 });
 
 test("Works for 1", () => {
   expect(sumOfDivided([1])).toEqual([]);
+});
+
+test("Works for an empty array", () => {
+  expect(sumOfDivided([])).toEqual([]);
 });
 
 test("Works for negative numbers", () => {
@@ -85,17 +89,24 @@ test("Works for a large negative number", () => {
   ]);
 });
 
-// test("Works for only large negative numbers", () => {
-//   expect(sumOfDivided([-29804, -4209, -28265, -72769, -31744])).toEqual([
-//     [2, -61548],
-//     [3, -4209],
-//     [5, -28265],
-//     [23, -4209],
-//     [31, -31744],
-//     [53, -72769],
-//     [61, -4209],
-//     [1373, -72769],
-//     [5653, -28265],
-//     [7451, -29804],
+// test("Works for complicated lists", () => {
+//   expect(
+//     sumOfDivided([
+//       76, 129, -48, -30, -48, -16, -10, 151, -1, -75, 89, 78, 14, -3, -26, 71,
+//       88, -23, 70,
+//     ])
+//   ).toEqual([
+//     [2, 148],
+//     [3, 3],
+//     [5, -45],
+//     [7, 84],
+//     [11, 88],
+//     [13, 52],
+//     [19, 76],
+//     [23, -23],
+//     [43, 129],
+//     [71, 71],
+//     [89, 89],
+//     [151, 151],
 //   ]);
 // });
