@@ -1,5 +1,10 @@
 function sumOfDivided(lst) {
-  return [[getFactors(lst[0])[0], lst[0]]];
+  return lst.map((num) => withFactors(num)).flat();
+}
+
+function withFactors(num) {
+  let primes = getPrimeFactors(num);
+  return primes.map((prime) => [prime, num]);
 }
 
 function getPrimeFactors(val) {
@@ -30,4 +35,4 @@ function halfInt(val) {
 
 module.exports = sumOfDivided;
 
-console.log(getPrimeFactors(50001));
+console.log(sumOfDivided([12]));
