@@ -1,9 +1,17 @@
 function sumOfDivided(lst) {
-  let allPrimeFactors = getAllPMs(lst);
-  return lst.map((num) => withFactors(num)).flat();
+  let allPrimeFactors = getAllPrimeFactors(lst);
+  return allPrimeFactors.map((factor) => factorAndSum(factor, lst));
 }
 
-function getAllPMs(lst) {
+function factorAndSum(factor, lst) {
+  let sumVals = [];
+  lst.forEach((num) => {
+    if (num % factor === 0) sumVals.push(num);
+  });
+  return [factor, sumArr(sumVals)];
+}
+
+function getAllPrimeFactors(lst) {
   let primeFactors = [];
   lst.forEach((num) => primeFactors.push(getPrimeFactors(num)));
   return uniques(primeFactors.flat());
@@ -13,10 +21,14 @@ function uniques(arr) {
   return arr.filter((val, ind) => arr.indexOf(val) === ind);
 }
 
-function withFactors(num) {
-  let primes = getPrimeFactors(num);
-  return primes.map((prime) => [prime, num]);
+function sumArr(arr) {
+  return arr.reduce((pre, pos) => pre + pos);
 }
+
+// function withFactors(num) {
+//   let primes = getPrimeFactors(num);
+//   return primes.map((prime) => [prime, num]);
+// }
 
 function getPrimeFactors(val) {
   let factors = getFactors(val);
@@ -46,4 +58,4 @@ function halfInt(val) {
 
 module.exports = sumOfDivided;
 
-console.log(getAllPMs([12, 15]));
+console.log(sumOfDivided([12, 15]));
