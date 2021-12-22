@@ -60,3 +60,7 @@ test("Five different values", () => {
 test("Works for 2", () => {
   expect(sumOfDivided([2])).toEqual([[2, 2]]);
 });
+
+test("Works for 1", () => {
+  expect(sumOfDivided([1])).toEqual([]);
+});
