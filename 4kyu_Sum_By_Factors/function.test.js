@@ -76,3 +76,26 @@ test("Works for negative numbers", () => {
     [5, 0],
   ]);
 });
+
+test("Works for a large negative number", () => {
+  expect(sumOfDivided([-4209])).toEqual([
+    [3, -4209],
+    [23, -4209],
+    [61, -4209],
+  ]);
+});
+
+// test("Works for only large negative numbers", () => {
+//   expect(sumOfDivided([-29804, -4209, -28265, -72769, -31744])).toEqual([
+//     [2, -61548],
+//     [3, -4209],
+//     [5, -28265],
+//     [23, -4209],
+//     [31, -31744],
+//     [53, -72769],
+//     [61, -4209],
+//     [1373, -72769],
+//     [5653, -28265],
+//     [7451, -29804],
+//   ]);
+// });

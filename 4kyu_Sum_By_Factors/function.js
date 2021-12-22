@@ -6,6 +6,7 @@ function sumOfDivided(lst) {
 function getAllPrimeFactors(lst) {
   let primeFactors = [];
   lst.forEach((num) => primeFactors.push(getPrimeFactors(num)));
+  console.log(`Prime factors found: ${primeFactors}`);
   let uniquePMs = uniques(flatten(primeFactors));
   return uniquePMs.sort((a, b) => {
     return a - b;
@@ -51,7 +52,8 @@ function sumArr(arr) {
 }
 
 function halfInt(val) {
-  return parseInt(val / 2);
+  let halvedInt = parseInt(val / 2);
+  return halvedInt > 0 ? halvedInt : 0 - halvedInt;
 }
 
 function flatten(list) {
@@ -60,13 +62,4 @@ function flatten(list) {
 
 module.exports = sumOfDivided;
 
-console.log(
-  flatten([
-    [2, 3],
-    [3, 5],
-    [3, 7],
-    [5, 7],
-    [3, 29],
-  ])
-);
-console.log(sumOfDivided([12, 15, 21, 35, 87]));
+console.log(sumOfDivided([-4209]));
