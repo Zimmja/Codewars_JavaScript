@@ -1,6 +1,6 @@
 function alphanumeric(string) {
   //your code here
-  return false;
+  return string.includes(" ") ? false : true;
 }
 
 module.exports = alphanumeric;

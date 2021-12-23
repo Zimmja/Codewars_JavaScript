@@ -1,5 +1,9 @@
 const alphanumeric = require("./function");
 
-test("Return false", () => {
-  expect(alphanumeric("")).toEqual(false);
+test("Returns true for simple words", () => {
+  expect(alphanumeric("hello")).toEqual(true);
+});
+
+test("Returns false for a single whitespace", () => {
+  expect(alphanumeric(" ")).toEqual(false);
 });
