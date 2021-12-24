@@ -10,3 +10,11 @@ test("Returns 2 for numbers that are squares + 1", () => {
   expect(sumOfSquares(5)).toEqual(2);
   expect(sumOfSquares(10)).toEqual(2);
 });
+
+test("Returns 4 for 15", () => {
+  expect(sumOfSquares(15)).toEqual(4);
+});
+
+test("Returns 3 for 19", () => {
+  expect(sumOfSquares(19)).toEqual(3);
+}); // 4, 1, 1, 1 => 3, 3, 1
