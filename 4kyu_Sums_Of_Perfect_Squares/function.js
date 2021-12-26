@@ -1,28 +1,26 @@
 function sumOfSquares(n) {
-  let maxRoot = biggestRoot(n);
-  let sums = [n];
+  let maxRoot = biggestRoot(n),
+    rootCounts = [n];
   for (let i = maxRoot; i >= 2; i -= 1) {
-    let squaresSum = calcSquares(n, i, last(sums)).length;
-    if (last(sums) > squaresSum) {
-      sums.push(squaresSum);
-      if (squaresSum === 2) i = 0;
-    }
+    let rCount = last(rootCounts);
+    let rootCount = getRootsArr(n, i, rCount).length;
+    if (rCount > rootCount) rootCounts.push(rootCount);
   }
-  return last(sums);
+  return last(rootCounts);
 }
 
 function last(arr) {
   return arr[arr.length - 1];
 }
 
-function calcSquares(n, max, breakpoint) {
-  let squares = [];
+function getRootsArr(n, max, breakpoint) {
+  let roots = [];
   while (n > 0) {
-    let transArr = biggestRoot(n, max);
-    squares.push(transArr);
-    n -= squares.length >= breakpoint ? n : transArr * transArr;
+    let root = biggestRoot(n, max);
+    roots.push(root);
+    n -= roots.length >= breakpoint ? n : root * root;
   }
-  return squares;
+  return roots;
 }
 
 function biggestRoot(n, max = n) {
