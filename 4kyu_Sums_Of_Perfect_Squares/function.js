@@ -1,7 +1,7 @@
 function sumOfSquares(n) {
-  let biggestSubSquare = biggestSquare(n)[0];
+  let maxRoot = biggestRoot(n);
   let sums = [n];
-  for (let i = biggestSubSquare; i >= 2; i -= 1) {
+  for (let i = maxRoot; i >= 2; i -= 1) {
     let squaresSum = calcSquares(n, i, last(sums)).length;
     if (last(sums) > squaresSum) {
       sums.push(squaresSum);
@@ -18,18 +18,16 @@ function last(arr) {
 function calcSquares(n, max, breakpoint) {
   let squares = [];
   while (n > 0) {
-    let transArr = biggestSquare(n, max);
-    squares.push(transArr[0]);
-    n -= transArr[1];
-    if (squares.length >= breakpoint) n = 0;
+    let transArr = biggestRoot(n, max);
+    squares.push(transArr);
+    n -= squares.length >= breakpoint ? n : transArr * transArr;
   }
   return squares;
 }
 
-function biggestSquare(n, max = n) {
-  let biggestRoot = parseInt(Math.sqrt(n));
-  let root = biggestRoot < max ? biggestRoot : max;
-  return [root, root * root];
+function biggestRoot(n, max = n) {
+  let root = parseInt(Math.sqrt(n));
+  return root < max ? root : max;
 }
 
 module.exports = sumOfSquares;
