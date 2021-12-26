@@ -1,9 +1,15 @@
 function solution(input, markers) {
-  markers.forEach((marker) => (input = trimMarker(input, marker)));
-  return input;
+  let lines = input.split("\n");
+  let trimmedLines = lines.map((line) => trimLine(line, markers));
+  return trimmedLines.join("\n");
 }
 
-function trimMarker(str, marker) {
+function trimLine(line, markers) {
+  markers.forEach((marker) => (line = trimByMarker(line, marker)));
+  return line;
+}
+
+function trimByMarker(str, marker) {
   let strSplit = str.split(marker);
   return strSplit[0].trim();
 }
