@@ -17,4 +17,8 @@ test("Returns 4 for 15", () => {
 
 test("Returns 3 for 19", () => {
   expect(sumOfSquares(19)).toEqual(3);
-}); // 4, 1, 1, 1 => 3, 3, 1
+});
+
+test("Works for larger numbers", () => {
+  expect(sumOfSquares(661915703)).toEqual(4);
+});
