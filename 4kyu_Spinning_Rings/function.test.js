@@ -15,3 +15,7 @@ test("Return 3 for [5, 5]", () => {
 test("Return 13 for [2, 10]", () => {
   expect(solution(2, 10)).toEqual(13);
 });
+
+test("Works for larger values", () => {
+  expect(solution(2 ** 24, 3 ** 15)).toEqual(23951671);
+});
