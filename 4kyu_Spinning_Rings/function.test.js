@@ -19,3 +19,11 @@ test("Return 13 for [2, 10]", () => {
 test("Works for larger values", () => {
   expect(solution(2 ** 24, 3 ** 15)).toEqual(23951671);
 });
+
+test("Works for really big values", () => {
+  expect(solution(131983531646778, 90915287537703)).toEqual(177441175415631);
+});
+
+// test("Works for really big values paired with smaller values", () => {
+//   expect(solution(5362, 253199320071448)).toEqual("?");
+// });
