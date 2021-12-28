@@ -1,44 +1,40 @@
-function spinningRings(innerMax, outerMax) {
-  // return spinningRingsBF(innerMax, outerMax);
-  let count = 0, // Inner decreases, outer increases
-    innerCount = 0,
-    outerCount = 0;
+function spinningRings(iMax, oMax) {
+  // return spinningRingsBF(iMax, outerMax);
+  let count = 1, // Inner decreases, outer increases
+    iCount = iMax,
+    oCount = 1;
 
-  while (innerCount != outerCount || count == 0) {
-    let mod = minDif(outerCount, outerMax, innerCount);
-    let comp = maxDif(outerCount, outerMax, innerCount);
-    // console.log(
-    //   `Start spin, IN:${innerCount}, OUT:${outerCount} [mod:${mod}, comp:${comp}]`
-    // );
-    if (innerCount < outerCount && mod > 0) {
-      innerCount -= mod;
-      outerCount += mod;
-      count += mod;
-    } else if (comp > 10) {
-      innerCount -= comp;
-      outerCount += comp;
-      count += comp;
-    } else {
-      outerCount += 1;
-      innerCount -= 1;
-      count += 1;
+  while (iCount != oCount) {
+    let mod = 1; //minDif(outerCount, oMax, iCount);
+    if (iCount < oCount) {
+      seeHERE("MISS [inner < outer]");
+      if (oCount <= iMax) mod = setMod("OUT < INmax", 1);
+      if (oCount > iMax) mod = setMod("IN < OUT", oMax - oCount + 1);
+    } else if ((iCount - oCount) % 2 != 0) {
+      seeHERE("MISS [passing by]");
+      if (oCount <= iMax) mod = setMod("OUT <= INmax", iCount + 1);
+      if (oCount > iMax) mod = setMod("OUT > INmax", oMax - oCount + 1);
+    } else if ((iCount - oCount) % 2 == 0) {
+      mod = setMod("HIT", iCount - oCount) / 2; // Inner and outer will meet on this spin, go to meeting place
     }
-    innerCount = checkBorders(innerCount, innerMax);
-    outerCount = checkBorders(outerCount, outerMax);
+    seeHERE(`  Start spin, IN:${iCount}, OUT:${oCount}, mod:${mod}`);
+    iCount -= mod;
+    oCount += mod;
+    count += mod;
+
+    iCount = checkBorders(iCount, iMax);
+    oCount = checkBorders(oCount, oMax);
   }
   return count;
 }
 
-function maxDif(oC, oM, iC) {
-  let difference = parseInt((iC - oC) / 2) - 2;
-  return difference + oC > oM ? oM - oC : difference;
+function setMod(message, val) {
+  seeHERE(message);
+  return val;
 }
 
-function minDif(oC, oM, iC) {
-  let outerDif = oM - oC;
-  let returnVal = iC > outerDif ? outerDif : iC;
-  // console.log(`Dif val: ${returnVal}`);
-  return returnVal;
+function seeHERE(message) {
+  // console.log(message);
 }
 
 function checkBorders(val, maxVal) {
@@ -47,29 +43,17 @@ function checkBorders(val, maxVal) {
   return val;
 }
 
-function spinningRingsBF(innerMax, outerMax) {
-  let innerCount = innerMax;
-  let outerCount = 1;
-  let count = 1;
-  while (innerCount != outerCount && count != 1000000000) {
-    // console.log(`Start spin, inner:${innerCount}, outer:${outerCount}`);
-    outerCount = outerCount === outerMax ? 0 : outerCount + 1;
-    innerCount = innerCount === 0 ? innerMax : innerCount - 1;
-    count += 1;
-  }
-  return count;
-}
-
 module.exports = spinningRings;
 
-console.log(`FINAL: ${spinningRings(1, 1)}`);
-console.log(`FINAL: ${spinningRings(2, 2)}`);
-console.log(`FINAL: ${spinningRings(5, 5)}`);
-console.log(`FINAL: ${spinningRings(2, 10)}`);
-console.log(`FINAL: ${spinningRings(2 ** 24, 3 ** 15)}`);
-console.log(`FINAL: ${spinningRings(131983531646778, 90915287537703)}`);
-
+console.log(`FINAL: ${spinningRings(1, 1)}`); // 1
+console.log(`FINAL: ${spinningRings(2, 2)}`); // 3
+console.log(`FINAL: ${spinningRings(5, 5)}`); // 3
+console.log(`FINAL: ${spinningRings(2, 10)}`); // 13
+// console.log(`FINAL: ${spinningRings(16777216, 14348907)}`); // 23951671
+// console.log(`FINAL: ${spinningRings(131983531646778, 90915287537703)}`); // 177441175415631
 // console.log(`FINAL: ${spinningRings(5362, 253199320071448)}`);
+
+// console.log(`FINAL: ${spinningRingsBF(2, 2)}`); // 13
 
 // OLD FUNCTS
 // if (innerCount === 0) {
@@ -90,3 +74,34 @@ console.log(`FINAL: ${spinningRings(131983531646778, 90915287537703)}`);
 // innerCount = checkBorders((innerCount -= difference), innerMax);
 // outerCount = checkBorders((outerCount += difference), outerMax);
 // count += difference;
+
+// WORKS FOR SMALLER VALUES
+function spinningRingsBF(innerMax, outerMax) {
+  let innerCount = innerMax;
+  let outerCount = 1;
+  let count = 1;
+  while (innerCount != outerCount && count != 1000000000) {
+    console.log(`Start spin, IN:${innerCount}, OUT:${outerCount}`);
+    outerCount = outerCount === outerMax ? 0 : outerCount + 1;
+    innerCount = innerCount === 0 ? innerMax : innerCount - 1;
+    count += 1;
+  }
+  return count;
+}
+
+// let diff = splitDif(outerCount, innerCount);
+//     let comp = maxDif(outerCount, outerMax, innerCount);
+
+// function splitDif(oC, iC) {
+//   return parseInt((iC - oC) / 2) - 2;
+// }
+
+// function maxDif(oC, oM, iC) {
+//   let difference = parseInt((iC - oC) / 2) - 2;
+//   return difference + oC > oM ? oM - oC : difference;
+// }
+
+// function minDif(oC, oM, iC) {
+//   let outerDif = oM - oC;
+//   return iC > outerDif ? outerDif : iC;
+// }
