@@ -20,7 +20,10 @@ function spinningRings(iMax, oMax) {
         let iLeft = iCount + 1;
         mod =
           iLeft > oLeft
-            ? setMod("UP <= DOWNmax, 0 outer", oLeft)
+            ? setMod(
+                "UP <= DOWNmax, 0 outer",
+                iLeft > oMax ? iLeft - oMax : oLeft
+              )
             : setMod("UP <= DOWNmax, max inner", iLeft);
       }
       if (oCount > iMax) mod = setMod("UP > DOWNmax", oMax - oCount + 1);
@@ -80,6 +83,7 @@ console.log(`FINAL: ${spinningRings(16777216, 14348907)}`); // 23951671
 console.log(`FINAL: ${spinningRings(131983531646778, 90915287537703)}`); // 177441175415631
 console.log(`FINAL: ${spinningRings(5362, 253199320071448)}`); // 253199320072568
 console.log(`FINAL: ${spinningRings(5028, 845)}`); // 9259
+console.log(`FINAL: ${spinningRings(84728478560236, 6635)}`); // 169456957115699
 
 // console.log(`FINAL: ${spinningRingsBF(10, 2)}`); // 13
 

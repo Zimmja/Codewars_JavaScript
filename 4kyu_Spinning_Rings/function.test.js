@@ -38,5 +38,5 @@ test("Smaller outer, small difference", () => {
 });
 
 test("Smaller outer, huge difference", () => {
-  expect(solution(84728478560236, 6635)).toEqual("?");
+  expect(solution(84728478560236, 6635)).toEqual(169456957115699);
 });
