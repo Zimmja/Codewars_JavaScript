@@ -1,44 +1,47 @@
 function spinningRings(iMax, oMax) {
-  let count = 1, // Inner decreases, outer increases
-    iCount = iMax,
-    oCount = 1,
-    cycles = 0,
-    cycleMax = 100000;
-
-  while (iCount != oCount && cycles < cycleMax) {
-    let mod = 1; //minDif(outerCount, oMax, iCount);
-    if (iCount < oCount) {
-      if (oCount <= iMax) mod = 1;
-      if (oCount > iMax) mod = oMax - oCount + 1;
-    } else if ((iCount - oCount) % 2 != 0) {
-      if (oCount <= iMax) {
-        let oLeft = oMax - oCount + 1;
-        let iLeft = iCount + 1;
-        mod = iLeft > oLeft ? (iLeft > oMax ? iLeft - oMax : oLeft) : iLeft;
-      }
-      if (oCount > iMax) mod = oMax - oCount + 1;
-    } else if ((iCount - oCount) % 2 == 0) {
-      mod = (iCount - oCount) / 2; // Inner and outer will meet on this spin, go to meeting place
-    }
-    iCount -= mod;
-    oCount += mod;
-    count += mod;
-
-    iCount = iResolve(iCount, iMax);
-    oCount = oResolve(oCount, oMax);
-    cycles += 1;
-  }
-  return cycles === cycleMax ? "Timeout" : count;
+  return spinCycles({ max: iMax, count: iMax }, { max: oMax, count: 1 });
 }
 
-function iResolve(val, max) {
+function spinCycles(i, o, count = 1) {
+  let cycle = { count: 0, max: 10000 };
+  while (i.count != o.count && cycle.count < cycle.max) {
+    let mod = spin(i, o);
+    i.count = resolveRing(i.count - mod, i.max);
+    o.count = resolveRing(o.count + mod, o.max);
+    count += mod;
+    cycle.count += 1;
+  }
+  return cycle.count === cycle.max ? "Timeout" : count;
+}
+
+function spin(i, o) {
+  let mod = 1;
+  if (i.count < o.count && o.count > i.max) {
+    mod = o.max - o.count + 1;
+  } else if ((i.count - o.count) % 2 != 0) {
+    if (o.count <= i.max) {
+      let oLeft = o.max - o.count + 1;
+      let iLeft = i.count + 1;
+      mod = iLeft > oLeft ? (iLeft > o.max ? iLeft - o.max : oLeft) : iLeft;
+    }
+    if (o.count > i.max) mod = o.max - o.count + 1;
+  } else if ((i.count - o.count) % 2 == 0) {
+    mod = (i.count - o.count) / 2;
+  }
+  return mod;
+}
+
+function resolveRing(val, max) {
   if (val <= max && val >= 0) return val;
+  return val < 0 ? resolveUnder(val, max) : resolveOver(val, max);
+}
+
+function resolveUnder(val, max) {
   let spill = ((0 - val + 1) % (max + 1)) - 1;
   return spill > 0 ? max - (spill - 1) : 0 - spill;
 }
 
-function oResolve(val, max) {
-  if (val <= max && val >= 0) return val;
+function resolveOver(val, max) {
   let spill = ((val + 1) % (max + 1)) - 1;
   return spill === -1 ? max : spill;
 }
