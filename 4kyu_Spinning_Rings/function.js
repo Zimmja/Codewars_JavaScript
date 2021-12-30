@@ -14,21 +14,29 @@ function spinCycles(i, o, count = 1) {
   return cycle.count === cycle.max ? "Timeout" : count;
 }
 
-function spin(i, o) {
-  let mod = 1;
-  if (i.count < o.count && o.count > i.max) {
-    mod = o.max - o.count + 1;
-  } else if ((i.count - o.count) % 2 != 0) {
-    if (o.count <= i.max) {
-      let oLeft = o.max - o.count + 1;
-      let iLeft = i.count + 1;
+function spin(i, o, mod = 1) {
+  let oLeft = o.max - o.count + 1,
+    iLeft = i.count + 1;
+  if (cannotHit(i, o)) mod = o.max - o.count + 1;
+  if (expectMiss(i, o)) {
+    // if (o.count > i.max) mod = oLeft;
+    if (o.count <= i.max)
       mod = iLeft > oLeft ? (iLeft > o.max ? iLeft - o.max : oLeft) : iLeft;
-    }
-    if (o.count > i.max) mod = o.max - o.count + 1;
-  } else if ((i.count - o.count) % 2 == 0) {
-    mod = (i.count - o.count) / 2;
   }
+  if (expectHit(i, o)) mod = (i.count - o.count) / 2;
   return mod;
+}
+
+function cannotHit(i, o) {
+  return o.count > i.max;
+}
+
+function expectHit(i, o) {
+  return (i.count - o.count) % 2 == 0;
+}
+
+function expectMiss(i, o) {
+  return (i.count - o.count) % 2 != 0;
 }
 
 function resolveRing(val, max) {
