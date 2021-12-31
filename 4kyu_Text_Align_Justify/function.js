@@ -1,11 +1,19 @@
 function justify(str, len) {
   let words = str.split(" ");
   let lines = splitIntoLines(words, len);
-  let justifiedLines = lines.map((line) => justifyLine(line, len));
+  let linesCount = lines.length;
+  let justifiedLines = lines.map((line, i) =>
+    justifyLine(line, len, lastInArr(i, linesCount))
+  );
   return justifiedLines.join("\n");
 }
 
-function justifyLine(line, len) {
+function lastInArr(i, iMax) {
+  return i === iMax - 1;
+}
+
+function justifyLine(line, len, last) {
+  if (last) return line.join(" ");
   let wordLengths = line.map((word) => word.length);
   let space = spaceHash(len, wordLengths);
   return buildLine(space, line);
