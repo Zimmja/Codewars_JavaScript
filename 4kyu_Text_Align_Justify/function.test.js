@@ -16,3 +16,9 @@ test("String is three words, shorter than len, unevenly spaced", () => {
   expect(justify("Hello there world", 22)).toEqual("Hello    there   world");
   expect(justify("How now red cow bow", 22)).toEqual("How  now  red  cow bow");
 });
+
+test("String has too many words to fit on one line", () => {
+  expect(justify("How now red cow bow", 10)).toEqual(
+    "How    now\nred    cow\nbow"
+  );
+});
