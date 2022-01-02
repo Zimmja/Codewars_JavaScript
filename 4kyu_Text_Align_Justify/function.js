@@ -1,51 +1,53 @@
 function justify(str, len) {
   let words = str.split(" ");
   let lines = splitIntoLines(words, len);
-  let linesCount = lines.length;
-  let justifiedLines = lines.map((line, i) =>
-    justifyLine(line, len, lastInArr(i, linesCount))
+  let lCount = lines.length;
+  let justLines = lines.map((line, i) =>
+    justifyLine(line, len, isLast(i, lCount))
   );
-  return justifiedLines.join("\n");
+  return justLines.join("\n");
 }
 
-function lastInArr(i, iMax) {
+function isLast(i, iMax) {
   return i === iMax - 1;
+}
+
+function splitIntoLines(words, len) {
+  let lines = [];
+  while (words.length > 0) lines.push(passWordsIntoLine(words, len));
+  return lines;
+}
+
+function passWordsIntoLine(words, len) {
+  let line = [],
+    lineLen = len;
+  while (lineLen > 0 && words.length > 0) {
+    let word = words[0];
+    let wordLen = word.length;
+    if (wordLen <= lineLen) {
+      line.push(words.shift());
+      lineLen -= wordLen + 1;
+    } else {
+      lineLen = 0;
+    }
+  }
+  return line;
 }
 
 function justifyLine(line, len, last) {
   if (last) return line.join(" ");
   let wordLengths = line.map((word) => word.length);
   let space = spaceHash(len, wordLengths);
-  return buildLine(space, line);
+  return addSpacesToLine(space, line);
 }
 
-function splitIntoLines(words, len) {
-  let lines = [];
-  while (words.length > 0) {
-    let line = [],
-      lineLen = len;
-    while (lineLen > 0 && words.length > 0) {
-      let word = words[0];
-      let wordLen = word.length;
-      if (wordLen <= lineLen) {
-        line.push(words.shift());
-        lineLen -= wordLen + 1;
-      } else {
-        lineLen = 0;
-      }
-    }
-    lines.push(line);
-  }
-  return lines;
-}
-
-function buildLine(space, words) {
+function addSpacesToLine(space, words) {
   return space.spill === 0
     ? words.join(space.str)
-    : buildUnevenLine(words, buildSpaceArr(space));
+    : addUnevenSpacesToLine(words, buildSpaceArr(space));
 }
 
-function buildUnevenLine(words, spaceArr) {
+function addUnevenSpacesToLine(words, spaceArr) {
   let output = [],
     cycles = words.length * 2 - 1;
   for (let i = 0; i < cycles; i++) {
