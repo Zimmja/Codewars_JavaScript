@@ -27,3 +27,15 @@ test("returns true for 255", () => {
 test("returns false for 256", () => {
   expect(eightBit("256")).toEqual(false);
 });
+
+test("returns false for 0140", () => {
+  expect(eightBit("0140")).toEqual(false);
+});
+
+test("returns false for -10", () => {
+  expect(eightBit("-10")).toEqual(false);
+});
+
+test("returns true for 239", () => {
+  expect(eightBit("239")).toEqual(true);
+});
