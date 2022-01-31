@@ -6,6 +6,4 @@ String.prototype.eightBitNumber = function () {
   return eightBit(this);
 };
 
-console.log("0".eightBitNumber());
-
 module.exports = eightBit;
