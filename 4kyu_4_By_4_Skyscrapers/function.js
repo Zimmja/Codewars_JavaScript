@@ -11,15 +11,14 @@ function solvePuzzle(clues) {
 
 const checkFours = (clues, block) => {
   clues.forEach((clue, i) => {
-    if (clue == 4 && i <= 3) {
-      block = fillColumn(block, i, [1, 2, 3, 4]);
-    }
+    if (clue == 4 && i <= 3) block = fillColumn(block, i, [1, 2, 3, 4]);
+    if (clue == 4 && i <= 11 && i >= 8)
+      block = fillColumn(block, i - 8, [4, 3, 2, 1]);
   });
   return block;
 };
 
-const fillColumn = (block, colIndx, content, reverse = false) => {
-  if (reverse) content.reverse();
+const fillColumn = (block, colIndx, content) => {
   return block.map((row, i) => {
     row[colIndx] = content[i];
     return row;
@@ -28,5 +27,5 @@ const fillColumn = (block, colIndx, content, reverse = false) => {
 
 module.exports = solvePuzzle;
 
-const puzzle01 = [4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+const puzzle01 = [1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 1, 1, 1, 1];
 console.log(solvePuzzle(puzzle01));
