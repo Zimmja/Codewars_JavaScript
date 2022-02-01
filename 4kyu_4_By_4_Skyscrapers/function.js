@@ -29,9 +29,9 @@ const checkAgainstRules = (clues, block) => {
 const checkOnes = (clues, block) => {
   clues.forEach((clue, i) => {
     if (clue === 1) {
-      if (i >= 12) block = setSquare(block, 3 - (i - 12), 0, 4);
-      if (i >= 8 && i < 12) block = setSquare(block, 3, 3 - (i - 8), 4);
-      if (i >= 4 && i < 8) block = setSquare(block, i - 4, 3, 4);
+      if (i >= 12) block = setSquare(block, indxD(i), 0, 4);
+      if (i >= 8 && i < 12) block = setSquare(block, 3, indxC(i), 4);
+      if (i >= 4 && i < 8) block = setSquare(block, indxB(i), 3, 4);
       if (i < 4) block = setSquare(block, 0, i, 4);
     }
   });
@@ -41,14 +41,18 @@ const checkOnes = (clues, block) => {
 const checkFours = (clues, block) => {
   clues.forEach((clue, i) => {
     if (clue === 4) {
-      if (i >= 12) block = setRC(block, 3 - (i - 12), [1, 2, 3, 4], true);
-      if (i >= 8 && i < 12) block = setRC(block, 3 - (i - 8), [4, 3, 2, 1]);
-      if (i >= 4 && i < 8) block = setRC(block, i - 4, [4, 3, 2, 1], true);
+      if (i >= 12) block = setRC(block, indxD(i), [1, 2, 3, 4], true);
+      if (i >= 8 && i < 12) block = setRC(block, indxC(i), [4, 3, 2, 1]);
+      if (i >= 4 && i < 8) block = setRC(block, indxB(i), [4, 3, 2, 1], true);
       if (i < 4) block = setRC(block, i, [1, 2, 3, 4]);
     }
   });
   return block;
 };
+
+const indxB = (i) => i - 4;
+const indxC = (i) => 3 - (i - 8);
+const indxD = (i) => 3 - (i - 12);
 
 const setRC = (block, index, setVals, isRow = false) => {
   const vals = isRow ? block[index] : getColVals(block, index);

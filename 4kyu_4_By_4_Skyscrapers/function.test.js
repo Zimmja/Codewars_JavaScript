@@ -1,9 +1,9 @@
 const solvePuzzle = require("./function.js");
 
-const puzzle01 = [4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const puzzle02 = [0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0];
-const puzzle03 = [0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0];
-const puzzle04 = [0, 4, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 0, 4, 0];
+const puzzle01 = [4, 4, 4, 4, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
+const puzzle02 = [-1, -1, -1, -1, -1, -1, -1, -1, 4, 4, 4, 4, -1, -1, -1, -1];
+const puzzle03 = [-1, -1, -1, -1, 4, 4, 4, 4, -1, -1, -1, -1, -1, -1, -1, -1];
+const puzzle04 = [-1, 4, -1, -1, -1, -1, 4, -1, -1, 4, -1, -1, -1, -1, 4, -1];
 
 test("If a 4 is found in the top row, the entire column is populated", () => {
   expect(solvePuzzle(puzzle01)).toEqual([
