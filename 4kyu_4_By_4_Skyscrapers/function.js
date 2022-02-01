@@ -30,17 +30,25 @@ const checkAgainstRules = (clues, block) => {
 
 const checkFours = (clues, block) => {
   clues.forEach((clue, i) => {
-    if (clue == 4) {
-      if (i >= 12) {
-        block = setRowOrCol(block, 3 - (i - 12), [1, 2, 3, 4]);
-      } else if (i >= 8) {
-        block = setRowOrCol(block, 3 - (i - 8), [4, 3, 2, 1], false);
-      } else if (i >= 4) {
-        block = setRowOrCol(block, i - 4, [4, 3, 2, 1]);
-      } else {
-        block = setRowOrCol(block, i, [1, 2, 3, 4], false);
-      }
+    if (clue === 4) {
+      if (i >= 12) block = setRC(block, 3 - (i - 12), [1, 2, 3, 4], true);
+      if (i >= 8 && i < 12) block = setRC(block, 3 - (i - 8), [4, 3, 2, 1]);
+      if (i >= 4 && i < 8) block = setRC(block, i - 4, [4, 3, 2, 1], true);
+      if (i < 4) block = setRC(block, i, [1, 2, 3, 4]);
     }
+  });
+  return block;
+};
+
+const setRC = (block, index, setVals, isRow = false) => {
+  const vals = isRow ? block[index] : getColVals(block, index);
+  if (vals === setVals) return block;
+  return setLineOfSquares(block, index, setVals, isRow);
+};
+
+const setLineOfSquares = (block, index, setVals, isRow) => {
+  setVals.forEach((setVal, i) => {
+    setSquare(block, isRow ? index : i, isRow ? i : index, setVal);
   });
   return block;
 };
@@ -48,15 +56,6 @@ const checkFours = (clues, block) => {
 const setSquare = (block, rowIndx, colIndx, setVal) => {
   if (block[rowIndx][colIndx] != 0) return block;
   block[rowIndx][colIndx] = setVal;
-  return block;
-};
-
-const setRowOrCol = (block, index, setVals, row = true) => {
-  const vals = row ? block[index] : getColVals(block, index);
-  if (vals === setVals) return block;
-  setVals.forEach((setVal, i) => {
-    setSquare(block, row ? index : i, row ? i : index, setVal);
-  });
   return block;
 };
 
