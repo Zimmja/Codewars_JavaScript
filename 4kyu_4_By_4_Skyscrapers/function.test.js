@@ -1,9 +1,10 @@
 const solvePuzzle = require("./function.js");
 
-const puzzle01 = [4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-const puzzle02 = [1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 1, 1, 1, 1];
-const puzzle03 = [1, 1, 1, 1, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1];
-const puzzle04 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4];
+const puzzle01 = [4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const puzzle02 = [0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0];
+const puzzle03 = [0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0];
+const puzzle04 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4];
+const puzzle05 = [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 test("puzzle01 arranges columns from 1 to 4", () => {
   expect(solvePuzzle(puzzle01)).toEqual([
@@ -40,3 +41,12 @@ test("puzzle04 arranges rows from 1 to 4", () => {
     [1, 2, 3, 4],
   ]);
 });
+
+// test("puzzle05 can fill out 1s", () => {
+//   expect(solvePuzzle(puzzle05)).toEqual([
+//     [4, 0, 0, 4],
+//     [0, 0, 0, 0],
+//     [0, 0, 0, 0],
+//     [0, 0, 0, 0],
+//   ]);
+// });
