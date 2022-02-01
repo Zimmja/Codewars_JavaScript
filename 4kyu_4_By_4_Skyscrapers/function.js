@@ -60,12 +60,16 @@ const checkFours = (clues, block) => {
   clues.forEach((clue, i) => {
     if (clue == 4) {
       if (i >= 12) {
-        newBlock = setRow(newBlock, i - 12, [1, 2, 3, 4]);
+        console.log("Updating over 12");
+        newBlock = setRow(newBlock, 3 - (i - 12), [1, 2, 3, 4]);
       } else if (i >= 8) {
-        newBlock = setColumn(newBlock, i - 8, [4, 3, 2, 1]);
+        console.log("Updating over 8");
+        newBlock = setColumn(newBlock, 3 - (i - 8), [4, 3, 2, 1]);
       } else if (i >= 4) {
+        console.log("Updating over 4");
         newBlock = setRow(newBlock, i - 4, [4, 3, 2, 1]);
       } else {
+        console.log("Updating over 0");
         newBlock = setColumn(newBlock, i, [1, 2, 3, 4]);
       }
     }
@@ -73,45 +77,7 @@ const checkFours = (clues, block) => {
   return newBlock;
 };
 
-const fillRow = (block, rowIndx, content) => {
-  return block;
-};
-
 module.exports = solvePuzzle;
 
-const puzzle01 = [4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const puzzle01 = [0, 4, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 0, 4, 0];
 console.log(solvePuzzle(puzzle01));
-
-// const checkOnes = (clues, block) => {
-//   clues.forEach((clue, i) => {
-//     if (clue == 1) {
-//       if (i >= 12) {
-//         block = addToRow(block, i - 12, 4, 0);
-//       } else if (i >= 8) {
-//         block = addToCol(block, i - 8, 4, 3);
-//       } else if (i >= 4) {
-//         block = addToRow(block, i - 4, 4, 3);
-//       } else {
-//         block = addToCol(block, i, 4, 0);
-//       }
-//     }
-//   });
-//   return block;
-// };
-
-// const addToCol = (block, colIndx, content, positionIndx) => {
-//   block[positionIndx][colIndx] = content;
-//   return block;
-// };
-
-// const addToRow = (block, rowIndx, content, positionIndx) => {
-//   block[rowIndx][positionIndx] = content;
-//   return block;
-// };
-
-// const fillRow = (block, rowIndx, content) => {
-//   let newBlock = block.slice();
-//   if (newBlock[rowIndx] === content) return block;
-//   newBlock[rowIndx] = content;
-//   return newBlock;
-// };
