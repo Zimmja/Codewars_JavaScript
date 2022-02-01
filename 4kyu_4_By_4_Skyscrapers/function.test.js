@@ -4,7 +4,6 @@ const puzzle01 = [4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const puzzle02 = [0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0];
 const puzzle03 = [0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0];
 const puzzle04 = [0, 4, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 0, 4, 0];
-const puzzle05 = [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 test("If a 4 is found in the top row, the entire column is populated", () => {
   expect(solvePuzzle(puzzle01)).toEqual([
@@ -42,11 +41,12 @@ test("Clue correctly places a 4 in multiple columns", () => {
   ]);
 });
 
-// test("puzzle05 can fill out 1s", () => {
-//   expect(solvePuzzle(puzzle05)).toEqual([
-//     [4, 0, 0, 4],
-//     [0, 0, 0, 0],
-//     [0, 0, 0, 0],
-//     [0, 0, 0, 0],
-//   ]);
-// });
+const puzzle05 = [-1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1];
+test("puzzle05 can fill out 1s", () => {
+  expect(solvePuzzle(puzzle05)).toEqual([
+    [0, 4, 0, 0],
+    [0, 0, 0, 4],
+    [4, 0, 0, 0],
+    [0, 0, 4, 0],
+  ]);
+});

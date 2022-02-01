@@ -22,11 +22,21 @@ const sumArr = (arr) => arr.reduce((a, b) => a + b);
 const checkAgainstRules = (clues, block) => {
   let blockClone = block.slice();
   blockClone = checkFours(clues, blockClone);
-  // blockClone = checkOnes(clues, blockClone);
+  blockClone = checkOnes(clues, blockClone);
   return blockClone;
 };
 
-// const checkOnes = (clues, block)
+const checkOnes = (clues, block) => {
+  clues.forEach((clue, i) => {
+    if (clue === 1) {
+      if (i >= 12) block = setSquare(block, 3 - (i - 12), 0, 4);
+      if (i >= 8 && i < 12) block = setSquare(block, 3, 3 - (i - 8), 4);
+      if (i >= 4 && i < 8) block = setSquare(block, i - 4, 3, 4);
+      if (i < 4) block = setSquare(block, 0, i, 4);
+    }
+  });
+  return block;
+};
 
 const checkFours = (clues, block) => {
   clues.forEach((clue, i) => {
