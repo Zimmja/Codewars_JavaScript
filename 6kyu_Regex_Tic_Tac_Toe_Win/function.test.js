@@ -39,3 +39,23 @@ const winX03 = "--X--X--X";
 test("Returns true when a column of Xs is present", () => {
   expect(regexTicTacToeWinChecker(winX03)).toEqual(true);
 });
+
+const winX04 = "--X-X-X--";
+test("Returns true when a diagonal of Xs is present", () => {
+  expect(regexTicTacToeWinChecker(winX04)).toEqual(true);
+});
+
+const winX05 = "X---X---X";
+test("Returns true when a diagonal of Xs is present the other way", () => {
+  expect(regexTicTacToeWinChecker(winX05)).toEqual(true);
+});
+
+const winO03 = "--O-O-O--";
+test("Returns true when a diagonal of Os is present", () => {
+  expect(regexTicTacToeWinChecker(winO03)).toEqual(true);
+});
+
+const winO04 = "O---O---O";
+test("Returns true when a diagonal of Os is present the other way", () => {
+  expect(regexTicTacToeWinChecker(winO04)).toEqual(true);
+});
