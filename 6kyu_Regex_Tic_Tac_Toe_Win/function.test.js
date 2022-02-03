@@ -34,3 +34,8 @@ const winO02 = "-O--O--O-";
 test("Returns true when a column of Os is present", () => {
   expect(regexTicTacToeWinChecker(winO02)).toEqual(true);
 });
+
+const winX03 = "--X--X--X";
+test("Returns true when a column of Xs is present", () => {
+  expect(regexTicTacToeWinChecker(winX03)).toEqual(true);
+});
