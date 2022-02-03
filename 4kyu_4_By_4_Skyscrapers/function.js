@@ -60,10 +60,9 @@ const checkAgainstRules = (clues, block) => {
 // --------------------------------------
 
 const checkFinals = (block) => {
-  block = checkFinalNumber(1, block);
-  block = checkFinalNumber(2, block);
-  block = checkFinalNumber(3, block);
-  block = checkFinalNumber(4, block);
+  [1, 2, 3, 4].forEach((n) => {
+    block = checkFinalNumber(n, block);
+  });
   return block;
 };
 
@@ -72,14 +71,12 @@ const checkFinalNumber = (number, block) => {
   if (numCount === 3) {
     let rowN = -1;
     let colN = -1;
-    if (!r0(block).includes(number)) rowN = 0;
-    if (!r1(block).includes(number)) rowN = 1;
-    if (!r2(block).includes(number)) rowN = 2;
-    if (!r3(block).includes(number)) rowN = 3;
-    if (!c0(block).includes(number)) colN = 0;
-    if (!c1(block).includes(number)) colN = 1;
-    if (!c2(block).includes(number)) colN = 2;
-    if (!c3(block).includes(number)) colN = 3;
+    [r0, r1, r2, r3].forEach((row, i) => {
+      if (!row(block).includes(number)) rowN = i;
+    });
+    [c0, c1, c2, c3].forEach((col, i) => {
+      if (!col(block).includes(number)) colN = i;
+    });
     block = setSquare(block, rowN, colN, number);
   }
   return block;
