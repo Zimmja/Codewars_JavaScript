@@ -69,3 +69,8 @@ const loose04 = "---XOX-XO";
 test("Expect board to lose", () => {
   expect(regexTicTacToeWinChecker(loose04)).toEqual(false);
 });
+
+const loose05 = "XOX-O---O";
+test("Expect board to lose", () => {
+  expect(regexTicTacToeWinChecker(loose05)).toEqual(false);
+});
