@@ -69,17 +69,19 @@ const checkFinals = (block) => {
 const checkFinalNumber = (number, block) => {
   numCount = block.flat().filter((n) => n === number).length;
   if (numCount === 3) {
-    let rowN = -1;
-    let colN = -1;
-    [r0, r1, r2, r3].forEach((row, i) => {
-      if (!row(block).includes(number)) rowN = i;
-    });
-    [c0, c1, c2, c3].forEach((col, i) => {
-      if (!col(block).includes(number)) colN = i;
-    });
+    let rowN = lineMissingNumber([r0, r1, r2, r3], block, number);
+    let colN = lineMissingNumber([c0, c1, c2, c3], block, number);
     block = setSquare(block, rowN, colN, number);
   }
   return block;
+};
+
+const lineMissingNumber = (lines, block, number) => {
+  let iNumber = -1;
+  lines.forEach((line, i) => {
+    if (!line(block).includes(number)) iNumber = i;
+  });
+  return iNumber;
 };
 
 // --------------------------------------
