@@ -1,5 +1,8 @@
 const solvePuzzle = require("./function.js");
 
+const puzzleClueless = [
+  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+];
 const puzzle01 = [4, 4, 4, 4, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
 const puzzle02 = [-1, -1, -1, -1, -1, -1, -1, -1, 4, 4, 4, 4, -1, -1, -1, -1];
 const puzzle03 = [-1, -1, -1, -1, 4, 4, 4, 4, -1, -1, -1, -1, -1, -1, -1, -1];
@@ -44,6 +47,16 @@ test("Clue correctly places a 4 in multiple columns", () => {
 const puzzle05 = [-1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1];
 test("puzzle05 can fill out 1s", () => {
   expect(solvePuzzle(puzzle05)).toEqual([
+    [0, 4, 0, 0],
+    [0, 0, 0, 4],
+    [4, 0, 0, 0],
+    [0, 0, 4, 0],
+  ]);
+});
+
+const puzzle06 = [-1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1];
+test("For an individual number, can find the position of the last one if three have been found", () => {
+  expect(solvePuzzle(puzzle06)).toEqual([
     [0, 4, 0, 0],
     [0, 0, 0, 4],
     [4, 0, 0, 0],

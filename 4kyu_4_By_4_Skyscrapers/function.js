@@ -16,14 +16,78 @@ function solvePuzzle(clues) {
   return block;
 }
 
+// -----------------------------
+// DEFINITIONS
+// -----------------------------
+
+// Sides and their index conversions
+const sideA = (i) => i < 4;
+const sideB = (i) => i >= 4 && i < 8;
+const sideC = (i) => i >= 8 && i < 12;
+const sideD = (i) => i >= 12;
+const indxB = (i) => i - 4;
+const indxC = (i) => 3 - (i - 8);
+const indxD = (i) => 3 - (i - 12);
+
+// Rows
+const r0 = (bl) => bl[0];
+const r1 = (bl) => bl[1];
+const r2 = (bl) => bl[2];
+const r3 = (bl) => bl[3];
+
+// Columns
+const c0 = (bl) => [r0(bl)[0], r1(bl)[0], r2(bl)[0], r3(bl)[0]];
+const c1 = (bl) => [r0(bl)[1], r1(bl)[1], r2(bl)[1], r3(bl)[1]];
+const c2 = (bl) => [r0(bl)[2], r1(bl)[2], r2(bl)[2], r3(bl)[2]];
+const c3 = (bl) => [r0(bl)[3], r1(bl)[3], r2(bl)[3], r3(bl)[3]];
+
 const sumArr = (arr) => arr.reduce((a, b) => a + b);
+
+// -----------------------------
+// FUNCTIONS
+// -----------------------------
 
 const checkAgainstRules = (clues, block) => {
   let blockClone = block.slice();
   blockClone = checkFours(clues, blockClone);
   blockClone = checkOnes(clues, blockClone);
+  blockClone = checkFinals(blockClone);
   return blockClone;
 };
+
+// --------------------------------------
+// CHECK LAST NUMBER IF THREE ARE KNOWN
+// --------------------------------------
+
+const checkFinals = (block) => {
+  block = checkFinalNumber(1, block);
+  block = checkFinalNumber(2, block);
+  block = checkFinalNumber(3, block);
+  block = checkFinalNumber(4, block);
+  return block;
+};
+
+const checkFinalNumber = (number, block) => {
+  numCount = block.flat().filter((n) => n === number).length;
+  if (numCount === 3) {
+    let rowN = -1;
+    let colN = -1;
+    if (!r0(block).includes(number)) rowN = 0;
+    if (!r1(block).includes(number)) rowN = 1;
+    if (!r2(block).includes(number)) rowN = 2;
+    if (!r3(block).includes(number)) rowN = 3;
+    if (!c0(block).includes(number)) colN = 0;
+    if (!c1(block).includes(number)) colN = 1;
+    if (!c2(block).includes(number)) colN = 2;
+    if (!c3(block).includes(number)) colN = 3;
+    block = setSquare(block, rowN, colN, number);
+  }
+  return block;
+};
+
+// --------------------------------------
+// CHECK ONES AND FOURS
+// --------------------------------------
 
 const checkOnes = (clues, block) => {
   clues.forEach((clue, i) => {
@@ -49,14 +113,9 @@ const checkFours = (clues, block) => {
   return block;
 };
 
-const sideA = (i) => i < 4;
-const sideB = (i) => i >= 4 && i < 8;
-const sideC = (i) => i >= 8 && i < 12;
-const sideD = (i) => i >= 12;
-
-const indxB = (i) => i - 4;
-const indxC = (i) => 3 - (i - 8);
-const indxD = (i) => 3 - (i - 12);
+// --------------------------------------
+// SET VALUES
+// --------------------------------------
 
 const setRC = (block, index, setVals, isRow = false) => {
   const vals = isRow ? block[index] : getColVals(block, index);
@@ -86,5 +145,14 @@ const getColVals = (block, colIndx) => [
 
 module.exports = solvePuzzle;
 
-const puzzle01 = [0, 4, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 0, 4, 0];
-console.log(solvePuzzle(puzzle01));
+// const puzzle01 = [0, 4, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 0, 4, 0];
+// console.log(solvePuzzle(puzzle01));
+
+// console.log(
+//   checkFinalNumber(4, [
+//     [0, 0, 0, 0],
+//     [4, 0, 0, 0],
+//     [0, 0, 4, 0],
+//     [0, 0, 0, 4],
+//   ])
+// );
