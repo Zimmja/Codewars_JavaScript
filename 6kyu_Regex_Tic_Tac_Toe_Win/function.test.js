@@ -59,3 +59,8 @@ const winO04 = "O---O---O";
 test("Returns true when a diagonal of Os is present the other way", () => {
   expect(regexTicTacToeWinChecker(winO04)).toEqual(true);
 });
+
+const loose03 = "XX-XOO---";
+test("Expect board to lose", () => {
+  expect(regexTicTacToeWinChecker(loose03)).toEqual(false);
+});
