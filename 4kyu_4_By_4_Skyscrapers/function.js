@@ -7,9 +7,8 @@ function solvePuzzle(clues) {
   ];
   let blockEdited = true;
   while (blockEdited === true) {
-    const copyBlock = block.slice();
-    const newBlock = checkAgainstRules(clues, copyBlock);
-    if (sumArr(newBlock) === sumArr(copyBlock)) {
+    const newBlock = checkAgainstRules(clues, block);
+    if (sumArr(newBlock) === sumArr(block)) {
       blockEdited = false;
       block = newBlock;
     }
@@ -29,10 +28,10 @@ const checkAgainstRules = (clues, block) => {
 const checkOnes = (clues, block) => {
   clues.forEach((clue, i) => {
     if (clue === 1) {
-      if (i >= 12) block = setSquare(block, indxD(i), 0, 4);
-      if (i >= 8 && i < 12) block = setSquare(block, 3, indxC(i), 4);
-      if (i >= 4 && i < 8) block = setSquare(block, indxB(i), 3, 4);
-      if (i < 4) block = setSquare(block, 0, i, 4);
+      if (sideD(i)) block = setSquare(block, indxD(i), 0, 4);
+      if (sideC(i)) block = setSquare(block, 3, indxC(i), 4);
+      if (sideB(i)) block = setSquare(block, indxB(i), 3, 4);
+      if (sideA(i)) block = setSquare(block, 0, i, 4);
     }
   });
   return block;
@@ -41,14 +40,19 @@ const checkOnes = (clues, block) => {
 const checkFours = (clues, block) => {
   clues.forEach((clue, i) => {
     if (clue === 4) {
-      if (i >= 12) block = setRC(block, indxD(i), [1, 2, 3, 4], true);
-      if (i >= 8 && i < 12) block = setRC(block, indxC(i), [4, 3, 2, 1]);
-      if (i >= 4 && i < 8) block = setRC(block, indxB(i), [4, 3, 2, 1], true);
-      if (i < 4) block = setRC(block, i, [1, 2, 3, 4]);
+      if (sideD(i)) block = setRC(block, indxD(i), [1, 2, 3, 4], true);
+      if (sideC(i)) block = setRC(block, indxC(i), [4, 3, 2, 1]);
+      if (sideB(i)) block = setRC(block, indxB(i), [4, 3, 2, 1], true);
+      if (sideA(i)) block = setRC(block, i, [1, 2, 3, 4]);
     }
   });
   return block;
 };
+
+const sideA = (i) => i < 4;
+const sideB = (i) => i >= 4 && i < 8;
+const sideC = (i) => i >= 8 && i < 12;
+const sideD = (i) => i >= 12;
 
 const indxB = (i) => i - 4;
 const indxC = (i) => 3 - (i - 8);
